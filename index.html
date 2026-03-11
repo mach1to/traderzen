@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TraderZen - Focus & Reflection</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i data-lucide="leaf" class="logo-icon"></i>
+                <h1 class="logo-text">TraderZen</h1>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i data-lucide="plus-circle"></i>
+                    <span>New Session</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="book-open"></i>
+                    <span>Journal</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="calendar"></i>
+                    <span>Weekly Review</span>
+                </a>
+            </nav>
+
+            <div class="nav-bottom">
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <span class="date-badge" id="current-date">Today, 24 Oct</span>
+                    <h2 class="page-title">New Trading Session</h2>
+                    <p class="page-subtitle">Take a deep breath. Focus on your process, not the outcome.</p>
+                </div>
+            </header>
+
+            <div class="scroll-area">
+                <form class="session-form" id="session-form">
+
+                    <!-- PRE-MARKET MINDSET -->
+                    <div class="card fade-in" style="animation-delay: 0.1s;">
+                        <div class="card-header">
+                            <div class="icon-wrap"><i data-lucide="sun"></i></div>
+                            <h3>Pre-Market Mindset</h3>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">How
+                                do you feel before trading today?</label>
+                            <div class="mood-selector">
+                                <button type="button" class="mood-btn" data-mood="confident">Confident</button>
+                                <button type="button" class="mood-btn" data-mood="focused">Focused</button>
+                                <button type="button" class="mood-btn" data-mood="neutral">Neutral</button>
+                                <button type="button" class="mood-btn" data-mood="tired">Tired</button>
+                                <button type="button" class="mood-btn" data-mood="insecure">Insecure</button>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-bottom: 0;">
+                            <div style="flex: 1;">
+                                <label
+                                    style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">Energy
+                                    Level (1-10)</label>
+                                <input type="number" min="1" max="10" class="zen-input" placeholder="1-10" />
+                            </div>
+                            <div style="flex: 1;">
+                                <label
+                                    style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">Stress
+                                    Level (1-10)</label>
+                                <input type="number" min="1" max="10" class="zen-input" placeholder="1-10" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRADE SETUP -->
+                    <div class="card fade-in" style="animation-delay: 0.2s;">
+                        <div class="card-header">
+                            <div class="icon-wrap"><i data-lucide="target"></i></div>
+                            <h3>Trade Setup</h3>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">Setup
+                                Type:</label>
+                            <div class="rules-toggle"
+                                style="flex-direction: row; gap: 0.5rem; max-width: 400px; margin-bottom: 1rem;">
+                                <label class="radio-label" style="flex: 1;">
+                                    <input type="radio" name="setup-type" value="reversal" id="setup-reversal">
+                                    <span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">Reversal</span>
+                                </label>
+                                <label class="radio-label" style="flex: 1;">
+                                    <input type="radio" name="setup-type" value="continuation" id="setup-continuation">
+                                    <span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">Continuation</span>
+                                </label>
+                            </div>
+
+                            <!-- Checkboxes shown based on selection -->
+                            <div id="reversal-checkboxes" style="display: none; margin-left: 0.5rem; margin-top: 1rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> 4H / 1H FVG
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> 5M / 15M FVG
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Lower
+                                    Timeframe Inversion
+                                </label>
+                            </div>
+
+                            <div id="continuation-checkboxes"
+                                style="display: none; margin-left: 0.5rem; margin-top: 1rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> 5M / 15M FVG
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Lower
+                                    Timeframe Inversion
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">How
+                                good was this setup?</label>
+                            <div class="mood-selector">
+                                <button type="button" class="mood-btn" data-mood="a-plus">A+</button>
+                                <button type="button" class="mood-btn" data-mood="a">A</button>
+                                <button type="button" class="mood-btn" data-mood="a-minus">A-</button>
+                                <button type="button" class="mood-btn" data-mood="b-plus">B+</button>
+                                <button type="button" class="mood-btn" data-mood="b">B</button>
+                                <button type="button" class="mood-btn" data-mood="c">C</button>
+                                <button type="button" class="mood-btn" data-mood="c-minus">C-</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DURING THE TRADE -->
+                    <div class="card fade-in" style="animation-delay: 0.3s;">
+                        <div class="card-header">
+                            <div class="icon-wrap"><i data-lucide="activity"></i></div>
+                            <h3>During the Trade</h3>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.75rem;">What
+                                emotions did you feel during the trade?</label>
+                            <div class="emotion-tags">
+                                <span class="tag">Calm</span>
+                                <span class="tag">Confident</span>
+                                <span class="tag">Focused</span>
+                                <span class="tag">Fear</span>
+                                <span class="tag">Anxiety</span>
+                                <span class="tag">Hesitation</span>
+                                <span class="tag">FOMO</span>
+                                <span class="tag">Greed</span>
+                                <span class="tag">Frustration</span>
+                                <span class="tag">Revenge Trading Urge</span>
+                                <span class="tag">Overconfidence</span>
+                                <span class="tag">Impatience</span>
+                                <span class="tag">Doubt</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.75rem;">Rule
+                                Adherence (Check all applied)</label>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Respected
+                                    Stop Loss
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Respected
+                                    Break Even
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Respected
+                                    Take Profit
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Followed
+                                    Position Sizing
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Waited For
+                                    Confirmation
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Max 2 Trades
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                                    <input type="checkbox"
+                                        style="width: 18px; height: 18px; accent-color: var(--navy-dark);"> Followed
+                                    Schedule
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POST-TRADE REFLECTION -->
+                    <div class="card fade-in" style="animation-delay: 0.4s;">
+                        <div class="card-header">
+                            <div class="icon-wrap"><i data-lucide="compass"></i></div>
+                            <h3>Post-Trade Reflection</h3>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">Was
+                                this a good trade regardless of profit or loss?</label>
+                            <div class="rules-toggle" style="flex-direction: row; gap: 0.5rem; max-width: 300px;">
+                                <label class="radio-label" style="flex: 1;"><input type="radio" name="good-trade"
+                                        value="yes"><span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">Yes</span></label>
+                                <label class="radio-label" style="flex: 1;"><input type="radio" name="good-trade"
+                                        value="no"><span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">No</span></label>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">What
+                                did you do well?</label>
+                            <textarea class="zen-input" placeholder="Reflect on your discipline and execution..."
+                                rows="2"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">What
+                                mistake did you make?</label>
+                            <textarea class="zen-input" placeholder="Identify areas for improvement..."
+                                rows="2"></textarea>
+                        </div>
+
+                        <div>
+                            <label
+                                style="display: block; font-weight: 500; color: var(--navy-dark); margin-bottom: 0.5rem;">Would
+                                you take this trade again under the same conditions?</label>
+                            <div class="rules-toggle" style="flex-direction: row; gap: 0.5rem; max-width: 300px;">
+                                <label class="radio-label" style="flex: 1;"><input type="radio" name="take-again"
+                                        value="yes"><span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">Yes</span></label>
+                                <label class="radio-label" style="flex: 1;"><input type="radio" name="take-again"
+                                        value="no"><span class="radio-custom"
+                                        style="padding: 0.75rem; text-align: center;">No</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-actions fade-in" style="animation-delay: 0.6s;" id="form-actions-container">
+                        <button type="submit" class="btn-primary" id="save-session-btn">
+                            <i data-lucide="check"></i> Save Session
+                        </button>
+                    </div>
+                </form>
+
+                <!-- AI COACH ANALYSIS RESULT (Hidden by default) -->
+                <div class="card coach-card" id="coach-analysis-section" style="display: none; margin-top: 2rem;">
+                    <div class="card-header coach-header">
+                        <div class="icon-wrap coach-icon"><i data-lucide="sparkles"></i></div>
+                        <div>
+                            <h3 class="coach-title">TraderZen AI Coach</h3>
+                            <p class="coach-subtitle">Analyzing session...</p>
+                        </div>
+                    </div>
+
+                    <div class="coach-content" id="coach-content-body" style="display: none;">
+                        <div class="coach-section">
+                            <h4><i data-lucide="check-circle-2" class="icon-green"></i> 1. Positive Discipline</h4>
+                            <p id="coach-positive">You stayed patient and waited for your 5M FVG confirmation before
+                                entering. Good job sticking to your planned setup instead of chasing price.</p>
+                        </div>
+
+                        <div class="coach-section">
+                            <h4><i data-lucide="alert-triangle" class="icon-yellow"></i> 2. Psychology Warnings</h4>
+                            <p id="coach-warning">I notice you felt 'FOMO' and 'Anxiety' during the trade. This
+                                combination often leads to premature exits. High energy plus anxiety can trigger
+                                fight-or-flight reactions.</p>
+                        </div>
+
+                        <div class="coach-section">
+                            <h4><i data-lucide="shield-alert" class="icon-red"></i> 3. Rule Discipline Check</h4>
+                            <p id="coach-rules">You adhered well to stop loss and take profit, but rule adherence is
+                                incomplete. Make sure position sizing is explicitly verified next time before entry.</p>
+                        </div>
+
+                        <div class="coach-section">
+                            <h4><i data-lucide="brain" class="icon-purple"></i> 4. Pattern Awareness</h4>
+                            <p id="coach-pattern">Your pre-market mindset was 'Tired' but you traded anyway. Being tired
+                                reduces cognitive load capacity, making you more susceptible to emotional impulses like
+                                FOMO.</p>
+                        </div>
+
+                        <div class="coach-section focus-section">
+                            <h4><i data-lucide="target" class="icon-blue"></i> 5. One Focus for the Next Trade</h4>
+                            <p id="coach-focus">Next session, actively monitor your breathing when in a trade. If you
+                                feel anxiety rising, take 3 deep breaths before making any decision.</p>
+                        </div>
+
+                        <div class="form-actions" style="margin-top: 2rem; padding-bottom: 0;">
+                            <button type="button" class="btn-primary btn-outline" id="new-session-btn"
+                                style="width: 100%; justify-content: center;">
+                                <i data-lucide="plus"></i> Start New Session
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="coach-loading" id="coach-loading-spinner"
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 0; gap: 1rem;">
+                        <i data-lucide="loader-2" class="spin coach-loader-icon"></i>
+                        <p style="color: var(--text-secondary); font-weight: 500;">Synthesizing your behaviors...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
