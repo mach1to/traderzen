@@ -556,3 +556,336 @@ body {
     color: var(--navy-dark);
     box-shadow: none;
 }
+
+/* =======================================
+   Dashboard Session Cards (Redesign)
+   ======================================= */
+.session-card {
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    padding: 1.5rem;
+    border: 1px solid rgba(10, 25, 47, 0.05);
+    box-shadow: 0 4px 20px rgba(10, 25, 47, 0.04);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.session-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(10, 25, 47, 0.08);
+    border-color: rgba(255, 209, 102, 0.3);
+}
+
+.session-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.session-card-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.session-card-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    background-color: var(--cream-bg);
+    color: var(--text-secondary);
+}
+
+.badge.win {
+    background-color: #E6FFFA;
+    color: #047481;
+}
+
+.badge.loss {
+    background-color: #FFF5F5;
+    color: #C53030;
+}
+
+.badge.breakeven {
+    background-color: #EDF2F7;
+    color: #4A5568;
+}
+
+.session-card-preview {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.badge.rating {
+    background-color: var(--yellow-accent);
+    color: var(--navy-dark);
+    font-weight: 700;
+}
+
+.session-card-quality {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    background: var(--yellow-accent);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}
+
+/* Session Card Actions */
+.session-card-actions {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(10, 25, 47, 0.02));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+    z-index: 5;
+    border-left: 1px solid transparent;
+}
+
+.session-card:hover .session-card-actions {
+    right: 0;
+    background: var(--card-bg);
+    border-left: 1px solid var(--border-light);
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: transparent;
+}
+
+.action-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+.action-btn.edit {
+    color: var(--text-secondary);
+}
+
+.action-btn.edit:hover {
+    background-color: var(--cream-bg);
+    color: var(--navy-dark);
+}
+
+.action-btn.delete {
+    color: #E53E3E;
+}
+
+.action-btn.delete:hover {
+    background-color: #FFF5F5;
+    transform: scale(1.1);
+}
+
+/* Mobile/Compact adjustment to padding if actions present */
+.session-card:hover .session-card-preview {
+    padding-right: 2.5rem;
+}
+/* Custom Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 25, 47, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-card {
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(10, 25, 47, 0.15);
+    animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #FFF5F5;
+    color: #E53E3E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.modal-icon i {
+    width: 30px;
+    height: 30px;
+}
+
+.modal-card h3 {
+    font-size: 1.5rem;
+    color: var(--navy-dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.modal-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 0.875rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.modal-btn.secondary {
+    background-color: var(--cream-bg);
+    color: var(--text-secondary);
+}
+
+.modal-btn.secondary:hover {
+    background-color: #EDF2F7;
+    color: var(--navy-dark);
+}
+
+.modal-btn.danger {
+    background-color: #E53E3E;
+    color: white;
+}
+
+.modal-btn.danger:hover {
+    background-color: #C53030;
+    transform: translateY(-2px);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =======================================
+   Login Overlay
+   ======================================= */
+#login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--cream-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.4s ease;
+}
+
+.login-card {
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(10, 25, 47, 0.08);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.login-card .logo-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--yellow-accent);
+    margin-bottom: 1rem;
+}
+
+.login-card h2 {
+    font-size: 1.75rem;
+    color: var(--navy-dark);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.login-card p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.login-form-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.login-form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--navy-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+#login-error {
+    color: #E53E3E;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    display: none;
+    font-weight: 500;
+}
